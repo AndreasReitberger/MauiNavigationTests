@@ -1,15 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AndreasReitberger.Shared.Core.Utilities;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShellNavTests.Models;
 using ShellNavTests.Views.Modals;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AndreasReitberger.Shared.Core.Utilities;
 
 namespace ShellNavTests.ViewModels
 {
@@ -41,6 +36,14 @@ namespace ShellNavTests.ViewModels
         [ObservableProperty]
         bool changeInfosShown = false;
 
+        #endregion
+
+        #region Misc
+        [ObservableProperty]
+        string lastMessage;
+
+        [ObservableProperty]
+        ObservableCollection<string> messages = new();
         #endregion
 
         #region Actions
@@ -78,10 +81,34 @@ namespace ShellNavTests.ViewModels
                 Stopwatch watch = new();
                 string methodName = $"{nameof(AppViewModel)}.{nameof(NavigateTo)}";
                 StopWatchHelper.Start(Dispatcher, ref watch, methodName);
-
+                var data = new Dictionary<string, object>()
+                {
+                    {"item", new Item { Name = "Test"} }
+                };
+                if (parameter is string target)
+                {
+                    switch (target)
+                    {
+                        case "blank":
+                            await Shell.Current.GoToAsync(nameof(ViewItemModalPage), true, data);
+                            break;
+                        case "blank_no_animation":
+                            await Shell.Current.GoToAsync(nameof(ViewItemModalPage), false, data);
+                            break;
+                        case "blank_no_async_page_loaded":
+                            await Shell.Current.GoToAsync(nameof(ViewItem2ModalPage), false, data);
+                            break;
+                        default:
+                            await ShellNavigator.Instance.GoToAsync(nameof(ViewItemModalPage), data, false);
+                            break;
+                    }
+                }
 
 
                 StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
+                LastMessage = $"{methodName}: Done in {watch.Elapsed}";
+                Messages.Add(LastMessage);
+                Debug.WriteLine(LastMessage);
                 watch = null;
             }
             catch(Exception ex)

@@ -8,21 +8,59 @@
     x:DataType="viewModels:AppViewModel"
     >
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center"
-            >
+    <Grid
+        ColumnDefinitions="*,*"
+        >
+        <ScrollView>
+            <VerticalStackLayout
+                Spacing="25"
+                Padding="30,0"
+                VerticalOptions="Center"
+                >
+                <Label
+                    Text="{Binding LastMessage}"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    />
 
-            <Button
-                Text="Open Modal"
-                Command="{Binding NavigateToCommand}"
-                CommandParameter="default"
-                HorizontalOptions="Center"
-                />
+                <Button
+                    Text="Open Modal"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="default"
+                    HorizontalOptions="Center"
+                    />
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <Button
+                    Text="Open Modal (Shell.Current)"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="blank"
+                    HorizontalOptions="Center"
+                    />
 
+                <Button
+                    Text="Open Modal (Shell.Current, no animation)"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="blank_no_animation"
+                    HorizontalOptions="Center"
+                    />
+
+                <BoxView
+                    HeightRequest="2"
+                    />
+                
+                <Button
+                    Text="Open Modal (Shell.Current, void page loaded)"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="blank_no_async_page_loaded"
+                    HorizontalOptions="Center"
+                    />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <CollectionView
+            Grid.Column="1"
+            ItemsSource="{Binding Messages}"
+            />
+    </Grid>
 </ContentPage>

@@ -8,7 +8,7 @@ using System.Reflection;
 namespace ShellNavTests.ViewModels.Modals
 {
     [QueryProperty(nameof(Item), "item")]
-    public partial class ViewItemModalPageViewModel : AppViewModel
+    public partial class ViewItem2ModalPageViewModel : AppViewModel
     {
         #region QueryParameter
         [ObservableProperty]
@@ -17,7 +17,7 @@ namespace ShellNavTests.ViewModels.Modals
 
         #region Constructor, LoadSettings
 
-        public ViewItemModalPageViewModel(IDispatcher dispatcher) : base(dispatcher)
+        public ViewItem2ModalPageViewModel(IDispatcher dispatcher) : base(dispatcher)
         {
             Dispatcher = dispatcher;
 
@@ -92,88 +92,42 @@ namespace ShellNavTests.ViewModels.Modals
         public new void Pages_Loaded(object sender, EventArgs e)
         {
             Stopwatch watch = new();
-            string methodName = $"{nameof(ViewItemModalPageViewModel)}.{nameof(Pages_Loaded)}";
+            string methodName = $"{nameof(ViewItem2ModalPageViewModel)}.{nameof(Pages_Loaded)}";
             StopWatchHelper.Start(Dispatcher, ref watch, methodName);
 
-            Task.Run(OnLoadedAsync);
-
-            StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
-            Debug.WriteLine($"{methodName}: Done in {watch.Elapsed}");
-            watch = null;
-        }
-        /*
-        public new async void Pages_Loaded(object sender, EventArgs e)
-        {
-            Stopwatch watch = new();
-            string methodName = $"{nameof(ViewItemModalPageViewModel)}.{nameof(Pages_Loaded)}";
-            StopWatchHelper.Start(Dispatcher, ref watch, methodName);
-
-            if (AppData.DataChanged)
+            Task.Run(async () =>
             {
-                //await RefreshDashboardAction();
-                await DispatchManager.UpdateInNewTaskAsync(OnLoadDataAsync);
-            }
-            else
-            {
-                UpdateFromInstanceData();
-                // Load image from the currently selected file
-                if (Item is not null)
-                {
-                    await DispatchManager.UpdateInNewTaskAsync(RefreshCourseDataAsync);
-                }
-            }
-            StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
-            Debug.WriteLine($"{methodName}: Done in {watch.Elapsed}");
-            watch = null;
-        }
-        */
-
-        new async Task OnLoadedAsync()
-        {
-            try
-            {
-                Stopwatch watch = new();
-                string methodName = $"{nameof(ViewItemModalPageViewModel)}.{nameof(OnLoadedAsync)}";
-                StopWatchHelper.Start(Dispatcher, ref watch, methodName);
-
-                // RefreshAll is already called in the LoadingPageViewModel, so load data here only if DataChanged is true.
                 if (AppData.DataChanged)
                 {
-                    //await RefreshAction();
-                    await Task.Run(base.OnLoadDataAsync);
-                    await Task.Run(Refresh);
+                    //await RefreshDashboardAction();
+                    await DispatchManager.UpdateInNewTaskAsync(OnLoadDataAsync);
                 }
                 else
                 {
-                    await DispatchManager.DispatchAsync(Dispatcher, UpdateFromInstanceData);
+                    UpdateFromInstanceData();
                     // Load image from the currently selected file
                     if (Item is not null)
                     {
                         await DispatchManager.UpdateInNewTaskAsync(RefreshCourseDataAsync);
                     }
                 }
-                StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
-                Debug.WriteLine($"{methodName}: Done in {watch.Elapsed}");
-                watch = null;
+            });
 
-            }
-            catch (Exception exc)
-            {
-                // Log error
-            }
+            StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
+            Debug.WriteLine($"{methodName}: Done in {watch.Elapsed}");
+            watch = null;
         }
-
         public void OnAppearing()
         {
             try
             {
                 Stopwatch watch = new();
-                string methodName = $"{nameof(ViewItemModalPageViewModel)}.{nameof(OnAppearing)}";
+                string methodName = $"{nameof(ViewItem2ModalPageViewModel)}.{nameof(OnAppearing)}";
                 StopWatchHelper.Start(Dispatcher, ref watch, methodName);
 
                 DispatchManager.Dispatch(Dispatcher, () => IsBusy = true);
                 LoadSettings();
-
+                //Force refresh to investigate time spent
                 if (AppData.DataChanged || true)
                 {
                     Task.Run(Refresh);

@@ -51,10 +51,24 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SharedMauiCoreLibrary" Version="1.0.16" />
+		<PackageReference Include="SharedMauiXamlStylesLibrary.Syncfusion" Version="1.1.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\SharedMauiCoreLibrary\src\SharedMauiCoreLibrary\SharedMauiCoreLibrary.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\Modals\ViewItem2ModalPage.xaml.cs">
+	    <DependentUpon>ViewItem2ModalPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\Modals\NewItemModalPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Modals\ViewItem2ModalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Modals\ViewItemModalPage.xaml">

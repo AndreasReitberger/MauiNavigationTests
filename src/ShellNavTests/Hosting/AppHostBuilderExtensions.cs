@@ -71,6 +71,7 @@ namespace ShellNavTests.Hosting
             // Modal view models
             //builder.Services.AddTransient<NewItemModalPageViewModel>();
             builder.Services.AddTransient<ViewItemModalPageViewModel>();
+            builder.Services.AddTransient<ViewItem2ModalPageViewModel>();
             return builder;
         }
         public static MauiAppBuilder RegisterModalViews(this MauiAppBuilder builder)
@@ -78,6 +79,7 @@ namespace ShellNavTests.Hosting
             // Modal view models
             builder.Services.AddTransient<NewItemModalPage>();
             builder.Services.AddTransient<ViewItemModalPage>();
+            builder.Services.AddTransient<ViewItem2ModalPage>();
             return builder;
         }
 

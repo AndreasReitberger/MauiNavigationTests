@@ -200,6 +200,7 @@ namespace ShellNavTests.Models
             // AppShell MenuItems
             Routing.RegisterRoute(nameof(NewItemModalPage), typeof(NewItemModalPage));
             Routing.RegisterRoute(nameof(ViewItemModalPage), typeof(ViewItemModalPage));
+            Routing.RegisterRoute(nameof(ViewItem2ModalPage), typeof(ViewItem2ModalPage));
         }
 
         #endregion

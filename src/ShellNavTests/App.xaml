@@ -2,12 +2,21 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ShellNavTests"
-             x:Class="ShellNavTests.App">
+             x:Class="ShellNavTests.App"
+             
+             xmlns:shared="clr-namespace:AndreasReitberger.Shared;assembly=SharedMauiXamlStylesLibrary"
+             xmlns:syncfusion="clr-namespace:AndreasReitberger.Shared.Syncfusion;assembly=SharedMauiXamlStylesLibrary.Syncfusion"
+             >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                
+                <syncfusion:Fonts />
+                <syncfusion:Styles />
+                <syncfusion:Templates />
+                <shared:DefaultTheme/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

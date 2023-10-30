@@ -2,7 +2,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ShellNavTests.Views.Modals.ViewItemModalPage"
+    x:Class="ShellNavTests.Views.Modals.ViewItem2ModalPage"
     Title="ViewItemModalPage"
     
     xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
@@ -16,7 +16,7 @@
     ios:Page.UseSafeArea="True"
     
     xmlns:viewModels="clr-namespace:ShellNavTests.ViewModels.Modals"
-    x:DataType="viewModels:ViewItemModalPageViewModel"
+    x:DataType="viewModels:ViewItem2ModalPageViewModel"
     >
     <core:SfBusyIndicator 
         IsRunning="{Binding IsBusy}"
