@@ -4,7 +4,7 @@ using ShellNavTests.Views.Modals;
 
 namespace ShellNavTests.Models
 {
-    public class ShellNavigator : BaseModel, IShellNavigator
+    public class ShellNavigator : BaseModel//, IShellNavigator
     {
         #region Instance
         static ShellNavigator _instance = null;

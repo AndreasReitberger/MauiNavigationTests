@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShellNavTests.Models;
+using ShellNavTests.Utilities;
 using ShellNavTests.Views.Modals;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
