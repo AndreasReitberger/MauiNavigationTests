@@ -81,6 +81,7 @@ namespace ShellNavTests.Hosting
             builder.Services.AddTransient<ViewItemModalPage>();
             builder.Services.AddTransient<ViewItem2ModalPage>();
             builder.Services.AddTransient<ViewItemWithCollectionViewModalPage>();
+            builder.Services.AddTransient<ViewItemWithSimpleCollectionViewModalPage>();
             return builder;
         }
 

@@ -237,6 +237,7 @@ namespace ShellNavTests.Models
             Routing.RegisterRoute(nameof(ViewItemModalPage), typeof(ViewItemModalPage));
             Routing.RegisterRoute(nameof(ViewItem2ModalPage), typeof(ViewItem2ModalPage));
             Routing.RegisterRoute(nameof(ViewItemWithCollectionViewModalPage), typeof(ViewItemWithCollectionViewModalPage));
+            Routing.RegisterRoute(nameof(ViewItemWithSimpleCollectionViewModalPage), typeof(ViewItemWithSimpleCollectionViewModalPage));
         }
 
         #endregion

@@ -107,6 +107,15 @@ namespace ShellNavTests.ViewModels
                         case "nav_with_collectionview":
                             await ShellNavigator.Instance.GoToAsync(Dispatcher, nameof(ViewItemWithCollectionViewModalPage), data, false);
                             break;
+                        case "blank_with_simple_collectionview":
+                            await DispatchManager.DispatchAsync(Dispatcher, async () =>
+                            {
+                                await Shell.Current.GoToAsync(nameof(ViewItemWithSimpleCollectionViewModalPage), true, data);
+                            });
+                            break;
+                        case "nav_with_simple_collectionview":
+                            await ShellNavigator.Instance.GoToAsync(Dispatcher, nameof(ViewItemWithSimpleCollectionViewModalPage), data, false);
+                            break;
                         default:
                             await ShellNavigator.Instance.GoToAsync(Dispatcher, nameof(ViewItemModalPage), data, false);
                             break;

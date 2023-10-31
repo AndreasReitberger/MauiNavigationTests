@@ -17,6 +17,11 @@ namespace ShellNavTests
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Montserrat-Regular.ttf", "MontserratRegular");
+                    fonts.AddFont("Montserrat-Bold.ttf", "MontserratBold");
+                    fonts.AddFont("Montserrat-SemiBold.ttf", "MontserratSemiBold");
+                    fonts.AddFont("materialdesignicons-webfont.ttf", "MaterialDesignIcons");
+                    fonts.AddFont("UIFontIcons.ttf", "UIFontIcons");
                 })
                 .InitializeSharedMauiStyles()
                 .InitializeSharedSyncfusionStyles()

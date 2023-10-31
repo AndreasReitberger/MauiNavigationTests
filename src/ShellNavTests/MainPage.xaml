@@ -10,7 +10,7 @@
 
     <Grid
         ColumnDefinitions="{OnIdiom Desktop='*,*', Default='*'}"
-        RowDefinitions="{OnIdiom Desktop='*', Default='*,*'}"
+        RowDefinitions="{OnIdiom Desktop='*', Default='1.5*,*'}"
         >
         <ScrollView
             >
@@ -46,6 +46,10 @@
                     HorizontalOptions="Center"
                     />
                 -->
+
+                <Label
+                    Text="With complex data"
+                    />
                 <Button
                     Text="Shell.Current"
                     Command="{Binding NavigateToCommand}"
@@ -72,6 +76,27 @@
                     Text="ShellNavigator"
                     Command="{Binding NavigateToCommand}"
                     CommandParameter="nav_with_collectionview"
+                    HorizontalOptions="Center"
+                    />
+
+                <BoxView
+                    HeightRequest="2"
+                    />
+
+                <Label
+                    Text="With simple data"
+                    />
+                <Button
+                    Text="Shell.Current"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="blank_with_simple_collectionview"
+                    HorizontalOptions="Center"
+                    />
+                
+                <Button
+                    Text="ShellNavigator"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="nav_with_simple_collectionview"
                     HorizontalOptions="Center"
                     />
 

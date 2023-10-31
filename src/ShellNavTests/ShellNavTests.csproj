@@ -49,6 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\materialdesignicons-webfont.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\UIFontIcons.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SharedMauiCoreLibrary" Version="1.0.16" />
 		<PackageReference Include="SharedMauiXamlStylesLibrary.Syncfusion" Version="1.1.4" />
@@ -61,6 +70,9 @@
 	<ItemGroup>
 	  <Compile Update="Views\Modals\ViewItem2ModalPage.xaml.cs">
 	    <DependentUpon>ViewItem2ModalPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Modals\ViewItemWithSimpleCollectionViewModalPage.xaml.cs">
+	    <DependentUpon>ViewItemWithSimpleCollectionViewModalPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Modals\ViewItemWithCollectionViewModalPage.xaml.cs">
 	    <DependentUpon>ViewItemWithCollectionViewModalPage.xaml</DependentUpon>
@@ -75,6 +87,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Modals\ViewItem2ModalPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Modals\ViewItemWithSimpleCollectionViewModalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Modals\ViewItemWithCollectionViewModalPage.xaml">

@@ -69,6 +69,7 @@
                 <Label.Style>
                     <Style TargetType="Label" BasedOn="{StaticResource MaterialFontFamilyIconLabelStyle}">
                         <Setter Property="Text" Value="{x:Static icons:MaterialIcons.CalendarOutline}" />
+                        <!--
                         <Style.Triggers>
                             <DataTrigger 
                                 Binding="{Binding IsAvailable}"
@@ -77,6 +78,7 @@
                                 <Setter Property="Text" Value="{x:Static icons:MaterialIcons.LockOutline}" />
                             </DataTrigger>
                         </Style.Triggers>
+                        -->
                     </Style>
                 </Label.Style>
             </Label>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ShellNavTests.Views.Modals.ViewItemWithSimpleCollectionViewModalPage"
+    Title="ViewItemWithSimpleCollectionViewModalPage"
+    
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+    
+    xmlns:icons="clr-namespace:AndreasReitberger.Shared.FontIcons;assembly=SharedMauiXamlStylesLibrary"
+    xmlns:iconsSyncfusion="clr-namespace:AndreasReitberger.Shared.Syncfusion.FontIcons;assembly=SharedMauiXamlStylesLibrary.Syncfusion"
+    
+    
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="True"
+    
+    xmlns:viewModels="clr-namespace:ShellNavTests.ViewModels.Modals"
+    x:DataType="viewModels:ViewItemModalPageViewModel"
+    >
+    <Grid
+        ColumnDefinitions="*,48"
+        RowDefinitions="Auto,*"
+        >
+        <VerticalStackLayout   
+            Padding="16,8"
+            Spacing="0"
+            CompressedLayout.IsHeadless="true"
+            >
+            <Label
+                Margin="16,8"
+                Text="Item"
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                HorizontalTextAlignment="Start" 
+                VerticalTextAlignment="Center"
+                Style="{StaticResource HeadlineLabelStyle}"
+                />
+            <BoxView />
+        </VerticalStackLayout>
+
+        <!-- Close Button -->
+        <Button 
+            Grid.Column="1"
+            Command="{Binding BackCommand}"
+            Text="{x:Static iconsSyncfusion:SyncfusionIcons.Close}" 
+            Style="{StaticResource IconButtonStyle}"
+            />
+
+        <!-- Main Content -->
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            RowDefinitions="{OnPlatform WinUI='*', Default='120,3*'}"
+            ColumnDefinitions="{OnPlatform WinUI='2*,*', Default='*'}"
+            >
+            <Border
+                Margin="{OnPlatform WinUI='16,30,16,30', Default='16,-30,16,-30'}"
+                Grid.Row="{OnPlatform WinUI=0, Default=1}"
+                Grid.Column="{OnPlatform WinUI=1, Default=0}"
+                Style="{StaticResource CardViewBorderStyle}"    
+                >
+                <Grid
+                    RowDefinitions="*,Auto"
+                    >
+
+                    <CollectionView
+                        ItemsSource="{Binding SomeItems}"
+                        ItemTemplate="{StaticResource UtilCollectionItemTemplate}"
+                        />
+
+                    <VerticalStackLayout 
+                            Grid.Row="1" 
+                            Margin="{OnPlatform WinUI='16,30,16,-10', Default='16,-30,16,30'}"
+                            >
+                        <BoxView />
+                        <Button
+                                Margin="20,6,20,20"
+                                Command="{Binding BackCommand}"
+                                >
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource RoundedLongButtonStyle}">
+                                    <Setter Property="Text" Value="Close"/>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- TopView - Button Overlay -->
+            <Grid
+                RowSpacing="0"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="*,30"
+                Margin="{OnPlatform WinUI='16,0,16,-30', Default='16,0,16,30'}"
+                >
+                <VerticalStackLayout
+                        >
+                    <Label
+                            Margin="0,10,0,0"
+                            Text="{Binding Item.Name}"
+                            Style="{StaticResource HeadlineLabelStyle}"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                            />
+                    <Border
+                            WidthRequest="{OnIdiom Phone=92, Default=120}"
+                            Style="{StaticResource ProfileBorderStyle}"                      
+                            >
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="{OnIdiom Phone=46, Default=60}" />
+                        </Border.StrokeShape>
+                        <!-- Causes slow loading
+                            <Image
+                                Source="{Binding Course.Instructor.ImageUri}"
+                                HeightRequest="92"
+                                />
+                            -->
+                    </Border>
+                    <Label
+                        Margin="8,5,0,8"
+                        HorizontalTextAlignment="Center"
+                        >
+                        <Label.Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                                <Setter Property="Text" Value="Full" />
+                                <Setter Property="TextColor" Value="{StaticResource Red}" />
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+        <!--</RefreshView>-->
+    </Grid>
+</ContentPage>
