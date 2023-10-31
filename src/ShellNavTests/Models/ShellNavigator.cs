@@ -89,10 +89,43 @@ namespace ShellNavTests.Models
 
         #region Methods
 
-        public async Task<bool> GoToAsync(string target, bool flyoutIsPresented = false, int delay = -1, bool animate = true)
+        public async Task<bool> GoToAsync(IDispatcher dispatcher, string target, Dictionary<string, object> parameters, bool flyoutIsPresented = false, int delay = -1, bool animate = true)
         {
-            return await GoToAsync(target: target, parameters: null, flyoutIsPresented: flyoutIsPresented, delay: delay, animate: animate);
+            try
+            {
+                if (Shell.Current.FlyoutBehavior == FlyoutBehavior.Flyout)
+                {
+                    Shell.Current.FlyoutIsPresented = flyoutIsPresented;
+                }
+                if (delay != -1)
+                {
+                    await Task.Delay(delay);
+                }
+
+                await DispatchManager.DispatchAsync(dispatcher, async () =>
+                {
+                    try
+                    {
+                        PreviousRoute = GetCurrentRoute();
+                        if (parameters == null)
+                            await Shell.Current.GoToAsync(state: target, animate: animate);
+                        else
+                            await Shell.Current.GoToAsync(state: target, parameters: parameters, animate: animate);
+                    }
+                    catch (Exception exc)
+                    {
+                    }
+                });
+                return true;
+            }
+            catch (Exception exc)
+            {
+                // Log error
+                return false;
+            }
         }
+
+        [Obsolete("Use method with IDispatcher instead")]
         public async Task<bool> GoToAsync(string target, Dictionary<string, object> parameters, bool flyoutIsPresented = false, int delay = -1, bool animate = true)
         {
             try
@@ -108,7 +141,7 @@ namespace ShellNavTests.Models
                 // Workaround for #13510 - https://github.com/xamarin/Xamarin.Forms/issues/13510
                 else if (DeviceInfo.Platform == DevicePlatform.iOS)
                 {
-                    await Task.Delay(50);
+                    //await Task.Delay(50);
                 }
 
                 await DispatchManager.UpdateUIThreadSaveAsync(async () =>
@@ -135,11 +168,13 @@ namespace ShellNavTests.Models
             }
         }
 
-        public async Task GoBackAsync(bool flyoutIsPresented = false, int delay = -1, bool animate = true, bool confirm = false)
-        {
-            await GoBackAsync(null, flyoutIsPresented: flyoutIsPresented, delay: delay, animate: animate, confirm: confirm);
-        }
-        public async Task GoBackAsync(Dictionary<string, object> parameters, bool flyoutIsPresented = false, int delay = -1, bool animate = true, bool confirm = false)
+        public Task<bool> GoToAsync(IDispatcher dispatcher, string target, bool flyoutIsPresented = false, int delay = -1, bool animate = true)
+        => GoToAsync(dispatcher: dispatcher, target: target, parameters: null, flyoutIsPresented: flyoutIsPresented, delay: delay, animate: animate);
+
+        public Task GoBackAsync(IDispatcher dispatcher, bool flyoutIsPresented = false, int delay = -1, bool animate = true, bool confirm = false)
+        => GoBackAsync(dispatcher: dispatcher, null, flyoutIsPresented: flyoutIsPresented, delay: delay, animate: animate, confirm: confirm);
+
+        public async Task GoBackAsync(IDispatcher dispatcher, Dictionary<string, object> parameters, bool flyoutIsPresented = false, int delay = -1, bool animate = true, bool confirm = false)
         {
             if (confirm)
             {
@@ -152,12 +187,12 @@ namespace ShellNavTests.Models
 
                 if (result)
                 {
-                    _ = await GoToAsync("..", parameters, flyoutIsPresented, delay, animate);
+                    _ = await GoToAsync(dispatcher: dispatcher, "..", parameters, flyoutIsPresented, delay, animate);
                 }
             }
             else
             {
-                _ = await GoToAsync("..", parameters, flyoutIsPresented, delay, animate);
+                _ = await GoToAsync(dispatcher: dispatcher, "..", parameters, flyoutIsPresented, delay, animate);
             }
         }
 
@@ -201,6 +236,7 @@ namespace ShellNavTests.Models
             Routing.RegisterRoute(nameof(NewItemModalPage), typeof(NewItemModalPage));
             Routing.RegisterRoute(nameof(ViewItemModalPage), typeof(ViewItemModalPage));
             Routing.RegisterRoute(nameof(ViewItem2ModalPage), typeof(ViewItem2ModalPage));
+            Routing.RegisterRoute(nameof(ViewItemWithCollectionViewModalPage), typeof(ViewItemWithCollectionViewModalPage));
         }
 
         #endregion

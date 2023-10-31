@@ -125,7 +125,7 @@ namespace ShellNavTests.ViewModels
         protected Task Close() => Back();
 
         [RelayCommand]
-        protected Task Back() => ShellNavigator.Instance.GoBackAsync(false);
+        protected Task Back() => ShellNavigator.Instance.GoBackAsync(Dispatcher, false);
 
         #endregion
 

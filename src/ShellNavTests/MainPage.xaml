@@ -9,9 +9,11 @@
     >
 
     <Grid
-        ColumnDefinitions="*,*"
+        ColumnDefinitions="{OnIdiom Desktop='*,*', Default='*'}"
+        RowDefinitions="{OnIdiom Desktop='*', Default='*,*'}"
         >
-        <ScrollView>
+        <ScrollView
+            >
             <VerticalStackLayout
                 Spacing="25"
                 Padding="30,0"
@@ -22,7 +24,7 @@
                     VerticalTextAlignment="Center"
                     HorizontalTextAlignment="Center"
                     />
-
+                <!-- 
                 <Button
                     Text="Open Modal"
                     Command="{Binding NavigateToCommand}"
@@ -43,7 +45,14 @@
                     CommandParameter="blank_no_animation"
                     HorizontalOptions="Center"
                     />
-
+                -->
+                <Button
+                    Text="Shell.Current"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="blank_with_collectionview"
+                    HorizontalOptions="Center"
+                    />
+<!-- 
                 <BoxView
                     HeightRequest="2"
                     />
@@ -55,11 +64,23 @@
                     HorizontalOptions="Center"
                     />
 
+                <BoxView
+                    HeightRequest="2"
+                    />
+-->                
+                <Button
+                    Text="ShellNavigator"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="nav_with_collectionview"
+                    HorizontalOptions="Center"
+                    />
+
             </VerticalStackLayout>
         </ScrollView>
 
         <CollectionView
-            Grid.Column="1"
+            Grid.Row="{OnIdiom Desktop=0, Default=1}"
+            Grid.Column="{OnIdiom Desktop=1, Default=0}"
             ItemsSource="{Binding Messages}"
             />
     </Grid>

@@ -98,12 +98,20 @@ namespace ShellNavTests.ViewModels
                         case "blank_no_async_page_loaded":
                             await Shell.Current.GoToAsync(nameof(ViewItem2ModalPage), false, data);
                             break;
+                        case "blank_with_collectionview":
+                            await DispatchManager.DispatchAsync(Dispatcher, async () =>
+                            {
+                                await Shell.Current.GoToAsync(nameof(ViewItemWithCollectionViewModalPage), true, data);
+                            });
+                            break;
+                        case "nav_with_collectionview":
+                            await ShellNavigator.Instance.GoToAsync(Dispatcher, nameof(ViewItemWithCollectionViewModalPage), data, false);
+                            break;
                         default:
-                            await ShellNavigator.Instance.GoToAsync(nameof(ViewItemModalPage), data, false);
+                            await ShellNavigator.Instance.GoToAsync(Dispatcher, nameof(ViewItemModalPage), data, false);
                             break;
                     }
                 }
-
 
                 StopWatchHelper.Stop(Dispatcher, ref watch, methodName);
                 LastMessage = $"{methodName}: Done in {watch.Elapsed}";

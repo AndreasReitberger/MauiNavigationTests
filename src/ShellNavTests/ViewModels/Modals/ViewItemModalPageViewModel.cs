@@ -2,8 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShellNavTests.Models;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Reflection;
 
 namespace ShellNavTests.ViewModels.Modals
 {
@@ -13,6 +13,33 @@ namespace ShellNavTests.ViewModels.Modals
         #region QueryParameter
         [ObservableProperty]
         Item item;
+        #endregion
+
+        #region Properties
+        [ObservableProperty]
+        ObservableCollection<string> someItems = new()
+        {
+            "Test",
+            "sdfdsgdg",
+            "fsdgfsgsdg",
+            "dfsfgdsgs",
+            "fedsgdsgsgdsg",
+            "fdsgsdgdsfg"
+        };
+
+        [ObservableProperty]
+        ObservableCollection<Item> someComplexItems = new()
+        {
+            new() { Name = "1" },
+            new() { Name = "2" },
+            new() { Name = "3" },
+            new() { Name = "4" },
+            new() { Name = "5" },
+            new() { Name = "6" },
+            new() { Name = "7" },
+            new() { Name = "8" },
+            new() { Name = "9" },
+        };
         #endregion
 
         #region Constructor, LoadSettings

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="AppBasement.Themes.ItemTemplates.CollectionViewItemTemplates"
+   
+    xmlns:models="clr-namespace:ShellNavTests.Models"
+    
+    xmlns:icons="clr-namespace:AndreasReitberger.Shared.FontIcons;assembly=SharedMauiXamlStylesLibrary"
+    xmlns:iconsSyncfusion="clr-namespace:AndreasReitberger.Shared.Syncfusion.FontIcons;assembly=SharedMauiXamlStylesLibrary.Syncfusion"
+    >
+
+    <DataTemplate x:Key="UtilCollectionItemTemplate" x:DataType="x:String">
+        <Grid 
+            Padding="16,12"
+            ColumnSpacing="16"
+            RowSpacing="2"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{OnIdiom Tablet=50, Default=36}" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- Icon -->
+            <Label 
+                Margin="3.5,1.5,0,0"  
+                Grid.RowSpan="2"
+                VerticalTextAlignment="Center"
+                Text="{x:Static icons:MaterialIcons.Check}" 
+                Style="{StaticResource MaterialFontFamilyIconLabelStyle}"
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                />
+
+            <!-- Util -->
+            <Label 
+                Margin="2,12,2,2"
+                Grid.Column="1"
+                Text="{Binding .}"
+                Style="{StaticResource SmallLabelStyle}" 
+                LineBreakMode="NoWrap"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Center"
+                />
+        </Grid>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="CollectionItemTemplate" x:DataType="models:Item">
+        <Grid  
+            Padding="16,12"
+            ColumnSpacing="16"
+            RowSpacing="2"
+            RowDefinitions="Auto,Auto"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{OnIdiom Tablet=50, Default=36}" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Icon -->
+            <Label 
+                Margin="3.5,1.5,0,0"  
+                Grid.RowSpan="2"
+                VerticalTextAlignment="Center"
+                Text="{x:Static icons:MaterialIcons.CalendarOutline}" 
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                >
+                <Label.Style>
+                    <Style TargetType="Label" BasedOn="{StaticResource MaterialFontFamilyIconLabelStyle}">
+                        <Setter Property="Text" Value="{x:Static icons:MaterialIcons.CalendarOutline}" />
+                        <Style.Triggers>
+                            <DataTrigger 
+                                Binding="{Binding IsAvailable}"
+                                Value="False"
+                                TargetType="Label">
+                                <Setter Property="Text" Value="{x:Static icons:MaterialIcons.LockOutline}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+
+            <!-- Start Time -->
+            <Label 
+                Margin="2,12,2,2"
+                Grid.Column="1"
+                Style="{StaticResource SmallLabelStyle}" 
+                LineBreakMode="NoWrap"
+                HorizontalTextAlignment="Start"
+                >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span 
+                                Text="{x:Static icons:MaterialIcons.ClockStart}" 
+                                Style="{StaticResource MaterialFontIconSpanStyle}"
+                                FontSize="{OnIdiom Tablet=14, Default=10}"
+                                />
+                            <Span Text=" "/>
+                            <Span Text="Start"/>
+                            <Span Text=": "/>
+                            <Span Text="{Binding Start, StringFormat='{0:dd-MM-yyyy HH:mm:ss}'}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- End Time -->
+            <Label 
+                Margin="2,2,2,4"
+                Grid.Column="1"
+                Grid.Row="1"
+                Style="{StaticResource SmallLabelStyle}" 
+                LineBreakMode="NoWrap" 
+                HorizontalTextAlignment="Start"
+                >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span 
+                                Text="{x:Static icons:MaterialIcons.ClockEnd}" 
+                                Style="{StaticResource MaterialFontIconSpanStyle}"
+                                FontSize="{OnIdiom Tablet=14, Default=10}"
+                                />
+                            <Span Text=" "/>
+                            <Span Text="End"/>
+                            <Span Text=": "/>
+                            <Span Text="{Binding End, StringFormat='{0:dd-MM-yyyy HH:mm:ss}'}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- Spots -->
+            <VerticalStackLayout       
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                >
+                <Label 
+                    Margin="2,4"
+                    Style="{StaticResource LabelStyle}" 
+                    LineBreakMode="NoWrap"
+                    HorizontalTextAlignment="Start"
+                    >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="0" />
+                                <Span Text=" / "/>
+                                <Span Text="10" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label 
+                    IsVisible="false"
+                    Margin="2,4"
+                    Style="{StaticResource LabelStyle}" 
+                    LineBreakMode="NoWrap"
+                    HorizontalTextAlignment="Start"
+                    Text="Full"
+                    TextColor="{StaticResource Red}"
+                    />
+            </VerticalStackLayout>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

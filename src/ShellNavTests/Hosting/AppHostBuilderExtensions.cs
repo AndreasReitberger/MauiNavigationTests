@@ -80,6 +80,7 @@ namespace ShellNavTests.Hosting
             builder.Services.AddTransient<NewItemModalPage>();
             builder.Services.AddTransient<ViewItemModalPage>();
             builder.Services.AddTransient<ViewItem2ModalPage>();
+            builder.Services.AddTransient<ViewItemWithCollectionViewModalPage>();
             return builder;
         }
 

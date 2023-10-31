@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellNavTests", "ShellNavTests\ShellNavTests.csproj", "{D3A45F13-6CFF-4E30-BA45-D3E51CA402E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedMauiCoreLibrary", "..\..\SharedMauiCoreLibrary\src\SharedMauiCoreLibrary\SharedMauiCoreLibrary.csproj", "{17756EFD-3032-486E-A056-B4259A6DFCCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedMauiCoreLibrary", "D:\VS\GitHub\SharedMauiCoreLibrary\src\SharedMauiCoreLibrary\SharedMauiCoreLibrary.csproj", "{A8457089-FDA4-443D-B66C-95E2B6631EFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{D3A45F13-6CFF-4E30-BA45-D3E51CA402E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A45F13-6CFF-4E30-BA45-D3E51CA402E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3A45F13-6CFF-4E30-BA45-D3E51CA402E6}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{17756EFD-3032-486E-A056-B4259A6DFCCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17756EFD-3032-486E-A056-B4259A6DFCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17756EFD-3032-486E-A056-B4259A6DFCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17756EFD-3032-486E-A056-B4259A6DFCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8457089-FDA4-443D-B66C-95E2B6631EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8457089-FDA4-443D-B66C-95E2B6631EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8457089-FDA4-443D-B66C-95E2B6631EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8457089-FDA4-443D-B66C-95E2B6631EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
