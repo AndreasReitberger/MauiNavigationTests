@@ -1,22 +1,20 @@
-﻿using AndreasReitberger.Core.Utilities;
-using AndreasReitberger.Shared.Core.Interfaces;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ShellNavTests.Views.Modals;
 
 namespace ShellNavTests.Models
 {
-    public class ShellNavigator : BaseModel//, IShellNavigator
+    public class ShellNavigator : ObservableObject//, IShellNavigator
     {
         #region Instance
         static ShellNavigator _instance = null;
-        static readonly object Lock = new();
+        static readonly Lock Lock = new();
         public static ShellNavigator Instance
         {
             get
             {
                 lock (Lock)
                 {
-                    if (_instance == null)
-                        _instance = new ShellNavigator();
+                    _instance ??= new ShellNavigator();
                 }
                 return _instance;
             }
