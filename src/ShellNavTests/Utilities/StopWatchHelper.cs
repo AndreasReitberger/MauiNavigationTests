@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace ShellNavTests.Utilities
 {
-    public static class StopWatchHelper
+    public static class StopWatchHelperOld
     {
         #region Methods
 #nullable enable
@@ -14,7 +14,7 @@ namespace ShellNavTests.Utilities
             string msg = $"Performance: Start => {methodName}: {DateTime.Now})";
             dispatcher?.Dispatch(() =>
             {
-                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Start)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelperOld)}.{nameof(Start)}" });
                 Debug.WriteLine(msg);
             });
         }
@@ -24,7 +24,7 @@ namespace ShellNavTests.Utilities
             string msg = $"Performance: Start => {methodName}: {DateTime.Now})";
             await dispatcher.DispatchAsync(() =>
             {
-                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(StartAsync)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelperOld)}.{nameof(StartAsync)}" });
                 Debug.WriteLine(msg);
             });
         }
@@ -35,7 +35,7 @@ namespace ShellNavTests.Utilities
             string msg = $"Performance: Done => {methodName}: {DateTime.Now} (Duration: {stopwatch?.Elapsed})";
             dispatcher?.Dispatch(() =>
             {
-                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(Stop)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelperOld)}.{nameof(Stop)}" });
                 Debug.WriteLine(msg);
             });
         }
@@ -46,7 +46,7 @@ namespace ShellNavTests.Utilities
             string msg = $"Performance: Done => {methodName}: {DateTime.Now} (Duration: {stopwatch?.Elapsed})";
             await dispatcher.DispatchAsync(() =>
             {
-                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelper)}.{nameof(StopAsync)}" });
+                if (log) eventManager?.LogInfo(new AppInfoEvent() { Message = msg, SourceName = $"{nameof(StopWatchHelperOld)}.{nameof(StopAsync)}" });
                 Debug.WriteLine(msg);
             });
         }

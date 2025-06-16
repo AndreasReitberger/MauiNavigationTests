@@ -1,5 +1,6 @@
 ﻿using AndreasReitberger.Shared.Hosting;
 using AndreasReitberger.Shared.Syncfusion.Hosting;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using ShellNavTests.Hosting;
 
@@ -12,6 +13,7 @@ namespace ShellNavTests
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureApp()
                 .ConfigureFonts(fonts =>
                 {
